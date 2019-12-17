@@ -13,19 +13,23 @@ const executeShellCommand = async (cmd, workingDirectory = gitRepositoryPathOs) 
   return stdout;
 }
 
-try {
-  const accessLevel = core.getInput('acess');
-  const packageName = core.getInput('packageName');
-  const values = await executeShellCommand(`npm view ${packageName} versions`);
-  const lastVersion = await executeShellCommand(`git describe --abbrev=0 --tags`);
-  if (!values.includes(lastVersion)) {
-    console.log(`Publishing ${lastVersion} version`);
-    await executeShellCommand(`npm publish --access ${accessLevel}`);
-  } else {
-    console.log("No publication : Version already published");
-  }
+async function run() {
+  try {
+    const accessLevel = core.getInput('acess');
+    const packageName = core.getInput('packageName');
+    const values = await executeShellCommand(`npm view ${packageName} versions`);
+    const lastVersion = await executeShellCommand(`git describe --abbrev=0 --tags`);
+    if (!values.includes(lastVersion)) {
+      console.log(`Publishing ${lastVersion} version`);
+      await executeShellCommand(`npm publish --access ${accessLevel}`);
+    } else {
+      console.log("No publication : Version already published");
+    }
 
-  core.setOutput("version", lastVersion);
-} catch (error) {
-  core.setFailed(error.message);
+    core.setOutput("version", lastVersion);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
 }
+
+run();
