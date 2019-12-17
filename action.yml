@@ -1,5 +1,7 @@
 name: 'NPM Simple Publisher'
 description: 'Simply publish a new NPM package version when a new git tag is pushed'
+icon: 'tag'
+color: 'green'
 on:
   push:
     tags:
