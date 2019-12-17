@@ -1,5 +1,5 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'NPM Simple Publisher'
+description: 'Simply publish a new NPM package version when a new git tag is pushed'
 on:
   push:
     tags:
