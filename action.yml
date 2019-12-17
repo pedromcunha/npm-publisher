@@ -1,0 +1,20 @@
+name: 'Hello World'
+description: 'Greet someone and record the time'
+on:
+  push:
+    tags:
+    - '*'
+inputs:
+  packageName:
+    description: 'Name of the npm package'
+    required: true
+  access:
+    description: 'Access level for the NPM package'
+    required: false
+    default: 'restricted'
+outputs:
+  version:
+    description: 'The version pushed to NPM'
+runs:
+  using: 'node12'
+  main: 'index.js'
