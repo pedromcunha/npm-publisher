@@ -19,5 +19,8 @@ outputs:
   version:
     description: 'The version pushed to NPM'
 runs:
-  using: 'node12'
-  main: 'index.js'
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.packageName }}
+    - ${{ inputs.access }}
