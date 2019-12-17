@@ -4,6 +4,11 @@ This action tries to publish a new version of your npm package.
 
 ## Inputs
 
+### `packageName`
+
+The name of the NPM package to be distributed.
+
+
 ### `access`
 
 The access level for the package. `restricted` or `public`.
